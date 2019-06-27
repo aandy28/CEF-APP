@@ -34,7 +34,7 @@ class HomeScreen extends Component {
   render() {
     const { navigate } = this.props.navigation;
     return (
-      <ScrollView>
+      <ScrollView style={{ backgroundColor: "#D12139" }}>
         <SearchBar />
         <TouchableOpacity
           activeOpacity={0.5}
@@ -57,18 +57,120 @@ class HomeScreen extends Component {
             }}
           />
         </TouchableOpacity>
-        <TouchableOpacity
-          activeOpacity={0.5}
+        <View
           style={{
-            height: 300,
-            marginBottom: 40
-          }}
-          onPress={() => {
-            navigate("ProductList");
+            flex: 1,
+            justifyContent: "space-between",
+            paddingHorizontal: 10,
+            flexDirection: "row",
+            flexWrap: "wrap"
           }}
         >
-          <Text>All Products</Text>
-        </TouchableOpacity>
+          <TouchableOpacity
+            activeOpacity={0.5}
+            style={{
+              height: 200,
+              width: 180,
+              maxWidth: 180,
+              minWidth: 180,
+              backgroundColor: "rgba(255, 255, 255, .2)",
+              marginBottom: 10,
+              flex: 1,
+              justifyContent: "center",
+              alignItems: "center",
+              borderRadius: 15
+            }}
+            onPress={() => {
+              navigate("Categories");
+            }}
+          >
+            <Icon
+              name="gift"
+              size={40}
+              style={{ marginBottom: 10 }}
+              color="#A31A2C"
+            />
+            <Text style={{ color: "#ffffff", fontSize: 20 }}>Categories</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            activeOpacity={0.5}
+            style={{
+              height: 200,
+              width: 180,
+              maxWidth: 180,
+              minWidth: 180,
+              backgroundColor: "rgba(255, 255, 255, .2)",
+              marginBottom: 10,
+              flex: 1,
+              justifyContent: "center",
+              alignItems: "center",
+              borderRadius: 15
+            }}
+            onPress={() => {
+              navigate("ProductList");
+            }}
+          >
+            <Icon
+              name="package"
+              size={40}
+              style={{ marginBottom: 10 }}
+              color="#A31A2C"
+            />
+            <Text style={{ color: "#ffffff", fontSize: 20 }}>Products</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            activeOpacity={0.5}
+            style={{
+              height: 200,
+              width: 180,
+              maxWidth: 180,
+              minWidth: 180,
+              backgroundColor: "rgba(255, 255, 255, .2)",
+              marginBottom: 10,
+              flex: 1,
+              justifyContent: "center",
+              alignItems: "center",
+              borderRadius: 15
+            }}
+            onPress={() => {
+              navigate("Promos");
+            }}
+          >
+            <Icon
+              name="award"
+              size={40}
+              style={{ marginBottom: 10 }}
+              color="#A31A2C"
+            />
+            <Text style={{ color: "#ffffff", fontSize: 20 }}>Promos</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            activeOpacity={0.5}
+            style={{
+              height: 200,
+              width: 180,
+              maxWidth: 180,
+              minWidth: 180,
+              backgroundColor: "rgba(255, 255, 255, .2)",
+              marginBottom: 10,
+              flex: 1,
+              justifyContent: "center",
+              alignItems: "center",
+              borderRadius: 15
+            }}
+            onPress={() => {
+              navigate("Cart");
+            }}
+          >
+            <Icon
+              name="shopping-cart"
+              size={40}
+              style={{ marginBottom: 10 }}
+              color="#A31A2C"
+            />
+            <Text style={{ color: "#ffffff", fontSize: 20 }}>Cart</Text>
+          </TouchableOpacity>
+        </View>
       </ScrollView>
     );
   }

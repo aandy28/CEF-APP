@@ -43,7 +43,7 @@ class SplashScreen extends Component {
       <View style={styles.viewStyles}>
         <View>
           <Image source={require("../images/cef_logo.png")} />
-          <Loading color={"#ffffff"} />
+          <Loading color={"#B81D32"} />
         </View>
       </View>
     );
