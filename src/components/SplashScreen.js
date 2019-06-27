@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { View, Text, Image } from "react-native";
 import { createApolloFetch } from "apollo-fetch";
 import GLOBALS from "../GlobalVars.js";
+import Loading from "./helpers/loading";
 
 const website_step_id = GLOBALS.WEBSITE_STEP_ID;
 const fetch = createApolloFetch({
@@ -9,6 +10,10 @@ const fetch = createApolloFetch({
 });
 
 class SplashScreen extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { loading: true };
+  }
   performTimeConsumingTask = async () => {
     await new Promise(resolve => setTimeout(resolve, 3000));
     fetch({
@@ -36,7 +41,10 @@ class SplashScreen extends Component {
   render() {
     return (
       <View style={styles.viewStyles}>
-        <Image source={require("../images/cef_logo.png")} />
+        <View>
+          <Image source={require("../images/cef_logo.png")} />
+          <Loading color={"#ffffff"} />
+        </View>
       </View>
     );
   }

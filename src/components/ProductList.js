@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { createApolloFetch } from "apollo-fetch";
 import { View, ScrollView, Text, Image, TouchableOpacity } from "react-native";
 import ProductItem from "./ProductItem";
+import Loading from "./helpers/loading";
 import Icon from "react-native-vector-icons/Feather";
 import { DrawerActions } from "react-navigation";
 import GLOBALS from "../GlobalVars.js";
@@ -56,7 +57,6 @@ class ProductList extends Component {
       variables: { website_step_id }
     })
       .then(res => {
-        console.log(res);
         this.setState({ products: res.data.allProducts }, () => {
           this.setState({ loading: false });
         });
@@ -75,9 +75,7 @@ class ProductList extends Component {
           Products
         </Text>
         {this.state.loading ? (
-          <View>
-            <Text>Loading Products</Text>
-          </View>
+          <Loading color={"#d02239"} />
         ) : (
           this.state.products.map((prod, index) => {
             return (
