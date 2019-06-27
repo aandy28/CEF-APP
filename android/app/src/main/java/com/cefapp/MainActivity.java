@@ -1,4 +1,4 @@
-package com.restaurantreview;
+package com.cefapp;
 
 import com.facebook.react.ReactActivity;
 
@@ -10,6 +10,6 @@ public class MainActivity extends ReactActivity {
      */
     @Override
     protected String getMainComponentName() {
-        return "RestaurantReview";
+        return "CEFAPP";
     }
 }

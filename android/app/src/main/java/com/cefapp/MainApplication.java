@@ -1,4 +1,4 @@
-package com.restaurantreview;
+package com.cefapp;
 
 import android.app.Application;
 
