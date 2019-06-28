@@ -70,9 +70,9 @@ class HomeScreen extends Component {
             activeOpacity={0.5}
             style={{
               height: 200,
-              width: 180,
-              maxWidth: 180,
-              minWidth: 180,
+              aspectRatio: 1,
+              flexBasis: 140,
+              margin: 10,
               backgroundColor: "rgba(255, 255, 255, .2)",
               marginBottom: 10,
               flex: 1,
@@ -96,9 +96,9 @@ class HomeScreen extends Component {
             activeOpacity={0.5}
             style={{
               height: 200,
-              width: 180,
-              maxWidth: 180,
-              minWidth: 180,
+              aspectRatio: 1,
+              flexBasis: 140,
+              margin: 10,
               backgroundColor: "rgba(255, 255, 255, .2)",
               marginBottom: 10,
               flex: 1,
@@ -122,9 +122,9 @@ class HomeScreen extends Component {
             activeOpacity={0.5}
             style={{
               height: 200,
-              width: 180,
-              maxWidth: 180,
-              minWidth: 180,
+              aspectRatio: 1,
+              flexBasis: 140,
+              margin: 10,
               backgroundColor: "rgba(255, 255, 255, .2)",
               marginBottom: 10,
               flex: 1,
@@ -148,9 +148,9 @@ class HomeScreen extends Component {
             activeOpacity={0.5}
             style={{
               height: 200,
-              width: 180,
-              maxWidth: 180,
-              minWidth: 180,
+              aspectRatio: 1,
+              flexBasis: 140,
+              margin: 10,
               backgroundColor: "rgba(255, 255, 255, .2)",
               marginBottom: 10,
               flex: 1,

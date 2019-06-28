@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import { View, ScrollView, Text, Image, Button } from "react-native";
+import { View, ScrollView, Text, Image, Dimensions } from "react-native";
 import Icon from "react-native-vector-icons/Feather";
-import { DrawerActions } from "react-navigation";
-import { withNavigation } from "react-navigation";
-
+import { DrawerActions, withNavigation } from "react-navigation";
+import ProductImageScrollContainer from "./product/ProductImageScrollContainer";
+import AddToCart from "./product/AddToCart";
+const { height, width } = Dimensions.get("window");
 class DetailsScreen extends Component {
   onCartClick = () => {};
   static navigationOptions = ({ navigation, screenProps }) => ({
@@ -34,45 +35,74 @@ class DetailsScreen extends Component {
     const prod = navigation.getParam("prod", "NO-ID");
 
     return (
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-        <View
-          style={{
-            backgroundColor: "#F2F2F3",
-            margin: 10,
-            elevation: 4,
-            shadowOffset: { width: 0, height: 2 },
-            shadowColor: "grey",
-            shadowOpacity: 0.5,
-            shadowRadius: 2
-          }}
-        >
-          <View
-            style={{
-              height: 250,
-              overflow: "hidden",
-              marginBottom: 40,
-              backgroundColor: "#babbbc"
-            }}
-          >
-            <Image
-              style={{ flex: 1 }}
-              source={{
-                uri: "https://loremflickr.com/g/320/240/product"
-              }}
-            />
+      <View
+        style={{
+          flex: 1,
+          alignItems: "center",
+          justifyContent: "center",
+          backgroundColor: "#ebefeb"
+        }}
+      >
+        <ScrollView scrollEventThrottle={16}>
+          <View style={{ flex: 1, paddingTop: 20 }}>
+            <View style={{ marginTop: 20 }}>
+              <ScrollView
+                horizontal={true}
+                showsHorizontalScrollIndicator={false}
+              >
+                <ProductImageScrollContainer
+                  title={"product image 1"}
+                  imageURI={"https://loremflickr.com/500/500/product"}
+                  screenWidth={width}
+                  screenHeight={height}
+                />
+                <ProductImageScrollContainer
+                  title={"product image 2"}
+                  imageURI={"https://loremflickr.com/g/500/500/product"}
+                  screenWidth={width}
+                  screenHeight={height}
+                />
+                <ProductImageScrollContainer
+                  title={"product image 3"}
+                  imageURI={"https://loremflickr.com/500/500/product"}
+                  screenWidth={width}
+                  screenHeight={height}
+                />
+                <ProductImageScrollContainer
+                  title={"product image 4"}
+                  imageURI={"https://loremflickr.com/g/500/500/product"}
+                  screenWidth={width}
+                  screenHeight={height}
+                />
+              </ScrollView>
+            </View>
           </View>
           <View
             style={{
-              paddingVertical: 10,
-              paddingHorizontal: 15
+              paddingVertical: 30,
+              paddingHorizontal: 20,
+              marginTop: -150,
+              backgroundColor: "#fff",
+              marginLeft: 10,
+              marginRight: 10,
+              borderTopLeftRadius: 10,
+              borderTopRightRadius: 10,
+              elevation: 4,
+              shadowOffset: { width: 2, height: 15 },
+              shadowColor: "grey",
+              shadowOpacity: 0.5,
+              shadowRadius: 15,
+              color: "#334b56",
+              flex: 1,
+              alignItems: "center"
             }}
           >
-            <View
+            {/* <View
               style={{
                 height: 88,
                 width: 88,
                 padding: 2,
-                marginTop: -100,
+
                 borderWidth: 4,
                 borderRadius: 44,
                 borderColor: "#fff",
@@ -80,6 +110,7 @@ class DetailsScreen extends Component {
                 overflow: "hidden"
               }}
             >
+              
               <Image
                 source={{
                   uri: "https://loremflickr.com/g/90/90/brand"
@@ -87,39 +118,39 @@ class DetailsScreen extends Component {
                 style={{ flex: 1, height: undefined, width: undefined }}
                 resizeMode="cover"
               />
-            </View>
-
-            <Text style={{ marginBottom: 8, fontWeight: "700" }}>
+            </View> */}
+            <Text
+              style={{
+                fontSize: 24,
+                fontWeight: "700",
+                color: "#334b56",
+                marginBottom: 20,
+                textAlign: "center"
+              }}
+            >
               {prod.description}
             </Text>
-            <Text style={{ color: "#4a5568" }}>
+
+            <Text style={{ color: "#334b56", fontSize: 22 }}>
               <Text style={{ fontWeight: "700" }}>£8.64 </Text>
               For 1
             </Text>
-            <Text style={{ color: "#4a5568" }}>£10.37 inc VAT</Text>
-          </View>
-          <View
-            style={{
-              paddingVertical: 10,
-              paddingHorizontal: 15
-            }}
-          >
-            <Text style={{ color: "#4a5568" }}>
-              Stock Code: {prod.stock_code}
+            <Text style={{ color: "#334b56", fontSize: 20 }}>
+              £10.37 inc VAT
             </Text>
-            <Text style={{ color: "#4a5568" }}>
-              Part Code: {prod.catalogue}
-            </Text>
+            <View style={{ marginVertical: 10, flex: 1, alignItems: "center" }}>
+              <Text style={{ color: "#334b56" }}>
+                Stock Code: {prod.stock_code}
+              </Text>
+              <Text style={{ color: "#334b56" }}>
+                Part Code: {prod.catalogue}
+              </Text>
+            </View>
+            <View>
+              <AddToCart screenWidth={width} />
+            </View>
           </View>
-        </View>
-        <Button
-          title="Go to Home"
-          onPress={() => this.props.navigation.navigate("Home")}
-        />
-        <Button
-          title="Go back"
-          onPress={() => this.props.navigation.goBack()}
-        />
+        </ScrollView>
       </View>
     );
   }
