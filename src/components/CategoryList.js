@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { createApolloFetch } from "apollo-fetch";
-import { View, ScrollView, Text, Image, TouchableOpacity } from "react-native";
+import { ScrollView, Text, View, TouchableOpacity } from "react-native";
 import ProductItem from "./ProductItem";
 import Icon from "react-native-vector-icons/Feather";
 import { DrawerActions } from "react-navigation";
@@ -51,6 +51,7 @@ class CategoryList extends Component {
       variables: { website_step_id }
     })
       .then(res => {
+        console.log(res);
         this.setState({ rootCategories: res.data.rootCategories });
       })
       .catch(error => {
@@ -83,24 +84,47 @@ class CategoryList extends Component {
     const { navigate } = this.props.navigation;
 
     return (
-      <ScrollView contentContainerStyle={styles.container}>
-        <Text style={{ padding: 40, fontSize: 30, textAlign: "center" }}>
-          Categories
-        </Text>
-
-        {this.state.rootCategories.map((category, index) => {
-          return (
-            <TouchableOpacity
-              key={index}
-              activeOpacity={0.5}
-              onPress={() => {
-                this.onCatClick(category);
-              }}
-            >
-              <Text style={styles.screenTextStyle}>{category.name}</Text>
-            </TouchableOpacity>
-          );
-        })}
+      <ScrollView style={styles.greyBg}>
+        <View style={styles.containerHome}>
+          <Text style={{ padding: 40, fontSize: 30 }}>Categories</Text>
+          <View style={styles.twoCol}>
+            {this.state.rootCategories.map((category, index) => {
+              return (
+                <TouchableOpacity
+                  key={index}
+                  style={{
+                    height: 200,
+                    aspectRatio: 1,
+                    flexBasis: 140,
+                    margin: 10,
+                    backgroundColor: "#fff",
+                    marginBottom: 10,
+                    flex: 1,
+                    justifyContent: "center",
+                    alignItems: "center",
+                    borderRadius: 5,
+                    elevation: 4,
+                    shadowOffset: { width: 2, height: 15 },
+                    shadowColor: "#ddd",
+                    shadowOpacity: 0.5,
+                    shadowRadius: 15
+                  }}
+                  activeOpacity={0.5}
+                  onPress={() => {
+                    this.onCatClick(category);
+                  }}
+                >
+                  <Icon
+                    name="battery-charging"
+                    size={30}
+                    onPress={({ props }) => this.onCartClick}
+                  />
+                  <Text>{category.name}</Text>
+                </TouchableOpacity>
+              );
+            })}
+          </View>
+        </View>
       </ScrollView>
     );
   }

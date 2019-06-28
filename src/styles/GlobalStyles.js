@@ -38,5 +38,13 @@ export default StyleSheet.create({
   },
   activeBackgroundColor: {
     backgroundColor: "grey"
-  }
+  },
+  twoCol: {
+    flex: 1,
+    justifyContent: "space-between",
+    paddingHorizontal: 10,
+    flexDirection: "row",
+    flexWrap: "wrap"
+  },
+  greyBg: { backgroundColor: "#ebefeb" }
 });
