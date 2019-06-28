@@ -8,7 +8,7 @@ const ProductItem = props => {
   return (
     <View
       style={{
-        backgroundColor: "#F2F2F3",
+        backgroundColor: "#ffffff",
         margin: 10,
         elevation: 4,
         shadowOffset: { width: 0, height: 2 },
@@ -60,14 +60,14 @@ const ProductItem = props => {
           />
         </View>
 
-        <Text style={{ marginBottom: 8, fontWeight: "700" }}>
+        <Text style={{ marginBottom: 8, fontWeight: "700", color: "#334b56" }}>
           {product.description}
         </Text>
-        <Text style={{ color: "#4a5568" }}>
+        <Text style={{ color: "#334b56" }}>
           <Text style={{ fontWeight: "700" }}>£8.64 </Text>
           For 1
         </Text>
-        <Text style={{ color: "#4a5568" }}>£10.37 inc VAT</Text>
+        <Text style={{ color: "#334b56" }}>£10.37 inc VAT</Text>
       </View>
       <View
         style={{
@@ -75,10 +75,10 @@ const ProductItem = props => {
           paddingHorizontal: 15
         }}
       >
-        <Text style={{ color: "#4a5568" }}>
+        <Text style={{ color: "#334b56" }}>
           Stock Code: {product.stock_code}
         </Text>
-        <Text style={{ color: "#4a5568" }}>Part Code: {product.catalogue}</Text>
+        <Text style={{ color: "#334b56" }}>Part Code: {product.catalogue}</Text>
       </View>
     </View>
   );

@@ -6,6 +6,7 @@ import Loading from "./helpers/loading";
 import Icon from "react-native-vector-icons/Feather";
 import { DrawerActions } from "react-navigation";
 import GLOBALS from "../GlobalVars.js";
+import styles from "../styles/GlobalStyles";
 
 const website_step_id = GLOBALS.WEBSITE_STEP_ID;
 const fetch = createApolloFetch({
@@ -70,8 +71,15 @@ class ProductList extends Component {
     const { navigate } = this.props.navigation;
 
     return (
-      <ScrollView>
-        <Text style={{ padding: 40, fontSize: 30, textAlign: "center" }}>
+      <ScrollView style={styles.greyBg}>
+        <Text
+          style={{
+            padding: 40,
+            fontSize: 30,
+            textAlign: "center",
+            color: "#334b56"
+          }}
+        >
           Products
         </Text>
         {this.state.loading ? (

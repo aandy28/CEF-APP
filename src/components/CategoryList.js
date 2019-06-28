@@ -86,7 +86,9 @@ class CategoryList extends Component {
     return (
       <ScrollView style={styles.greyBg}>
         <View style={styles.containerHome}>
-          <Text style={{ padding: 40, fontSize: 30 }}>Categories</Text>
+          <Text style={{ padding: 40, fontSize: 30, color: "#334b56" }}>
+            Categories
+          </Text>
           <View style={styles.twoCol}>
             {this.state.rootCategories.map((category, index) => {
               return (
@@ -98,8 +100,8 @@ class CategoryList extends Component {
                     flexBasis: 140,
                     margin: 10,
                     backgroundColor: "#fff",
-                    marginBottom: 10,
                     flex: 1,
+                    padding: 10,
                     justifyContent: "center",
                     alignItems: "center",
                     borderRadius: 5,
@@ -117,9 +119,18 @@ class CategoryList extends Component {
                   <Icon
                     name="battery-charging"
                     size={30}
+                    style={{ marginBottom: 10, color: "#334b56" }}
                     onPress={({ props }) => this.onCartClick}
                   />
-                  <Text>{category.name}</Text>
+                  <Text
+                    style={{
+                      textAlign: "center",
+                      fontSize: 16,
+                      color: "#334b56"
+                    }}
+                  >
+                    {category.name}
+                  </Text>
                 </TouchableOpacity>
               );
             })}

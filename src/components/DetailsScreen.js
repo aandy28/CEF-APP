@@ -81,7 +81,7 @@ class DetailsScreen extends Component {
             style={{
               paddingVertical: 30,
               paddingHorizontal: 20,
-              marginTop: -150,
+              marginTop: -50,
               backgroundColor: "#fff",
               marginLeft: 10,
               marginRight: 10,

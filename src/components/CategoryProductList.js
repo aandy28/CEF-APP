@@ -49,8 +49,15 @@ class CategoryProductList extends Component {
   render() {
     const { navigate } = this.props.navigation;
     return (
-      <ScrollView>
-        <Text style={{ padding: 40, fontSize: 30, textAlign: "center" }}>
+      <ScrollView style={styles.greyBg}>
+        <Text
+          style={{
+            padding: 40,
+            fontSize: 30,
+            textAlign: "center",
+            color: "#334b56"
+          }}
+        >
           Products for {this.props.navigation.state.params.id}
         </Text>
         {this.props.navigation.state.params.products.length > 0 ? (
