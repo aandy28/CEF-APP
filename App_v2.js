@@ -11,6 +11,8 @@ import DefaultScreen from "./src/components/HomeScreen";
 import Cart from "./src/components/cart/";
 import CategoryList from "./src/components/CategoryList";
 import CategoryProductList from "./src/components/CategoryProductList";
+import ProductList from "./src/components/ProductList";
+import DetailsScreen from "./src/components/DetailsScreen";
 import SplashScreen from "./src/components/SplashScreen";
 import MainDrawer from "./src/drawers/MainDrawer";
 import screenMapping from "./src/screenMapping";
@@ -101,6 +103,49 @@ const categoryProductsScreenStack = createStackNavigator(
   }
 );
 
+const productsScreenStack = createStackNavigator(
+  {
+    ProductList: {
+      screen: ProductList
+    }
+  },
+  {
+    defaultNavigationOptions: {
+      headerMode: "screen",
+      headerStyle: {
+        backgroundColor: "#d02239"
+      },
+      headerTintColor: "#fff",
+      headerTitleStyle: {
+        fontWeight: "bold"
+      },
+      headerTitle: <Logo />
+    }
+  }
+);
+
+const detailScreenStack = createStackNavigator(
+  {
+    DetailsScreen: {
+      screen: DetailsScreen,
+      path: "detail/:id"
+    }
+  },
+  {
+    defaultNavigationOptions: {
+      headerMode: "screen",
+      headerStyle: {
+        backgroundColor: "#d02239"
+      },
+      headerTintColor: "#fff",
+      headerTitleStyle: {
+        fontWeight: "bold"
+      },
+      headerTitle: <Logo />
+    }
+  }
+);
+
 // RootDrawer containing drawers for each components
 const RootDrawer = createDrawerNavigator(
   {
@@ -112,6 +157,8 @@ const RootDrawer = createDrawerNavigator(
     },
     Categories: { screen: categoryListScreenStack },
     CategoryProducts: { screen: categoryProductsScreenStack },
+    Products: { screen: productsScreenStack },
+    ProductDetails: { screen: detailScreenStack },
     // Register screens of all options of child components
     ...screenMapping
   },
