@@ -3,8 +3,11 @@ import { View, Text, Image } from "react-native";
 
 const ProductItem = props => {
   const { imageBaseUrl, product } = props;
+
   let prodImage = product.images[0].content;
-  console.log(imageBaseUrl + prodImage);
+  let prodStepId = product.images[0].stepId;
+  const curProdImage = imageBaseUrl + prodStepId + "/" + "medium_" + prodImage;
+
   return (
     <View
       style={{
@@ -28,7 +31,7 @@ const ProductItem = props => {
         <Image
           style={{ flex: 1 }}
           source={{
-            uri: imageBaseUrl + prodImage
+            uri: curProdImage
           }}
         />
       </View>
