@@ -23,7 +23,9 @@ class AddToCart extends Component {
                 alignItems: "center",
                 justifyContent: "center"
               }}
-              onPress={() => addItem(this.props.item)}
+              onPress={() => {
+                addItem(this.props.item);
+              }}
             >
               <Text
                 style={{ fontWeight: "700", color: "#334b56", fontSize: 18 }}

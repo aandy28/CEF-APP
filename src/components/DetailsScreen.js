@@ -10,7 +10,7 @@ const { height, width } = Dimensions.get("window");
 class DetailsScreen extends Component {
   onCartClick = () => {};
   static navigationOptions = ({ navigation, screenProps }) => ({
-    headerRight: <CartPreview  navigation={navigation}/>,
+    headerRight: <CartPreview navigation={navigation} />,
     headerLeft: (
       <Icon
         name="menu"

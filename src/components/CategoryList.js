@@ -47,7 +47,7 @@ class CategoryList extends Component {
 
   componentDidMount() {
     fetch({
-      query: `{ rootCategories { name, id }}`,
+      query: `{ rootCategories { name, id, children{name} }}`,
       variables: { website_step_id }
     })
       .then(res => {
