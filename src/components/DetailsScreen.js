@@ -3,20 +3,14 @@ import { View, ScrollView, Text, Image, Dimensions } from "react-native";
 import Icon from "react-native-vector-icons/Feather";
 import { DrawerActions, withNavigation } from "react-navigation";
 import ProductImageScrollContainer from "./product/ProductImageScrollContainer";
+import { AppConsumer } from "../providers/AppProvider";
 import AddToCart from "./product/AddToCart";
+import CartPreview from "./CartPreview";
 const { height, width } = Dimensions.get("window");
 class DetailsScreen extends Component {
   onCartClick = () => {};
   static navigationOptions = ({ navigation, screenProps }) => ({
-    headerRight: (
-      <Icon
-        name="shopping-cart"
-        size={30}
-        style={{ paddingRight: 10 }}
-        color="#000"
-        onPress={({ props }) => this.onCartClick}
-      />
-    ),
+    headerRight: <CartPreview />,
     headerLeft: (
       <Icon
         name="menu"
@@ -138,7 +132,13 @@ class DetailsScreen extends Component {
             <Text style={{ color: "#334b56", fontSize: 20 }}>
               £10.37 inc VAT
             </Text>
-            <View style={{ marginVertical: 10, flex: 1, alignItems: "center" }}>
+            <View
+              style={{
+                marginVertical: 10,
+                flex: 1,
+                alignItems: "center"
+              }}
+            >
               <Text style={{ color: "#334b56" }}>
                 Stock Code: {prod.stock_code}
               </Text>
@@ -147,7 +147,7 @@ class DetailsScreen extends Component {
               </Text>
             </View>
             <View>
-              <AddToCart screenWidth={width} />
+              <AddToCart screenWidth={width} item={prod} />
             </View>
           </View>
         </ScrollView>

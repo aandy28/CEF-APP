@@ -1,21 +1,27 @@
 // Header.js
 import React from "react";
-import withCart from "./cart/WithCart";
+import { AppConsumer } from "../providers/AppProvider";
+import { View, Text } from "react-native";
 class CartPreview extends React.Component {
   render() {
-    const { cart } = this.props;
-    let cartView =
-      cart.length == 0 ? (
-        <View>
-          <Text>Empty cart</Text>
-        </View>
-      ) : (
-        <View>
-          <Text>Items in cart: ({cart.length})</Text>
-        </View>
-      );
+    let cartView = (
+      <AppConsumer>
+        {({ cart, addItem }) => {
+          return cart && cart.length == 0 ? (
+            <View>
+              <Text>Empty cart</Text>
+            </View>
+          ) : (
+            <View>
+              <Text>Items in cart: ({cart.length})</Text>
+            </View>
+          );
+        }}
+      </AppConsumer>
+    );
+
     return cartView;
   }
 }
-const CartPreviewWithCart = withCart(CartPreview);
-export default CartPreviewWithCart;
+
+export default CartPreview;

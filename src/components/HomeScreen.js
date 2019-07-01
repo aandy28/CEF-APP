@@ -5,20 +5,13 @@ import { DrawerActions } from "react-navigation";
 import Icon from "react-native-vector-icons/Feather";
 import styles from "../styles/GlobalStyles";
 import SearchBar from "./searchbar/";
+import CartPreview from "./CartPreview";
 
 class HomeScreen extends Component {
   onCartClick = () => {};
   static navigationOptions = ({ navigation, screenProps }) => ({
     drawerLabel: "Home",
-    headerRight: (
-      <Icon
-        name="shopping-cart"
-        size={30}
-        style={{ paddingRight: 10 }}
-        color="#000"
-        onPress={({ props }) => this.onCartClick}
-      />
-    ),
+    headerRight: <CartPreview />,
     headerLeft: (
       <Icon
         name="menu"
