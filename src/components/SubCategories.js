@@ -12,12 +12,14 @@ const fetch = createApolloFetch({
   uri: GLOBALS.BASE_GRAPHQL_URL
 });
 
-class CategoryList extends Component {
+class SubCategories extends Component {
   constructor(props) {
     super(props);
     this.state = {
       loading: true,
-      rootCategories: []
+      rootCategories: [],
+      currentName: "",
+      currentID: ""
     };
   }
 
@@ -45,37 +47,47 @@ class CategoryList extends Component {
   });
 
   componentDidMount() {
-    fetch({
-      query: `{ rootCategories { name, id, children{name, id} }}`,
-      variables: { website_step_id }
-    })
-      .then(res => {
-        this.setState({ rootCategories: res.data.rootCategories });
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    // const subCategories = this.props.navigation.getParam(
+    //   "subCategories",
+    //   "NO-ID"
+    // );
+    // const currentID = this.props.navigation.getParam("id", "NO-ID");
+    // const currentName = this.props.navigation.getParam("name", "NO-ID");
+    // console.log(subCategories);
+    // this.setState({
+    //   rootCategories: subCategories,
+    //   currentID: currentID,
+    //   currentName: currentName
+    // });
+    // fetch({
+    //   query: `{ rootCategories { name, id, children{name, id} }}`,
+    //   variables: { website_step_id }
+    // })
+    //   .then(res => {
+    //     console.log(res);
+    //     this.setState({ rootCategories: res.data.rootCategories });
+    //   })
+    //   .catch(error => {
+    //     console.log(error);
+    //   });
   }
 
   onCatClick = cat => {
     fetch({
-      query: `{ category(id: "${cat.id}")
-          { name
-            id
-            children{
-              id
-              name
-              products{
-                description
-              }
-            }
-          }
-        }`
+      query: `{ category(id: "${cat.id}") 
+        { name
+          products {
+            description
+          } 
+        }
+      }`
     })
       .then(res => {
-        this.props.navigation.navigate("SubCategoryList", {
-          id: cat.id,
-          cat: cat
+        console.log(res);
+        this.props.navigation.navigate("Categories", {
+          subCategories: res.data.category.children,
+          id: res.data.category.id,
+          name: res.data.category.name
         });
       })
       .catch(error => {
@@ -85,7 +97,11 @@ class CategoryList extends Component {
 
   render() {
     const { navigate } = this.props.navigation;
-
+    let id =
+      this.props.navigation.state.hasOwnProperty("params") == true
+        ? this.props.navigation.state.params.id
+        : null;
+    console.log(id);
     return (
       <ScrollView style={styles.greyBg}>
         <View style={styles.containerHome}>
@@ -123,6 +139,7 @@ class CategoryList extends Component {
                     name="battery-charging"
                     size={30}
                     style={{ marginBottom: 10, color: "#334b56" }}
+                    onPress={({ props }) => this.onCartClick}
                   />
                   <Text
                     style={{
@@ -143,4 +160,4 @@ class CategoryList extends Component {
   }
 }
 
-export default CategoryList;
+export default SubCategories;
