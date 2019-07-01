@@ -27,7 +27,7 @@ class ProductList extends Component {
   onCartClick = () => {};
   static navigationOptions = ({ navigation, screenProps }) => ({
     drawerLabel: "Home",
-    headerRight: <CartPreview />,
+    headerRight: <CartPreview navigation={navigation}/>,
     headerLeft: (
       <Icon
         name="menu"

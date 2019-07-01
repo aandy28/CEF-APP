@@ -2,18 +2,33 @@
 import React from "react";
 import { AppConsumer } from "../providers/AppProvider";
 import { View, Text } from "react-native";
+import Icon from "react-native-vector-icons/Feather";
+
 class CartPreview extends React.Component {
   render() {
+    console.log(this.props);
     let cartView = (
       <AppConsumer>
         {({ cart, addItem }) => {
           return cart && cart.length == 0 ? (
             <View>
-              <Text>Empty cart</Text>
+              <Icon
+                name="shopping-cart"
+                size={30}
+                style={{ paddingRight: 10 }}
+                color="#000"
+                onPress={() => this.props.navigation.navigate("Cart")}
+              />
             </View>
           ) : (
             <View>
-              <Text>Items in cart: ({cart.length})</Text>
+              <Icon
+                name="shopping-cart"
+                size={30}
+                style={{ paddingRight: 10 }}
+                color="#fff"
+                onPress={({ props }) => this.onCartClick}
+              />
             </View>
           );
         }}

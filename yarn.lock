@@ -1344,6 +1344,10 @@ buffer-from@^1.0.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/buffer-from/-/buffer-from-1.1.1.tgz#32713bc028f75c02fdb710d7c7bcec1f2c6070ef"
 
+bundle@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/bundle/-/bundle-2.1.0.tgz#ab47ccc48eb688f706e6ecd323d01db6854aa25e"
+
 bytes@3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/bytes/-/bytes-3.0.0.tgz#d32815404d689699f85a4ea4fa8755dd13a96048"
@@ -4481,7 +4485,7 @@ react-native-vector-icons@^6.5.0:
     prop-types "^15.6.2"
     yargs "^13.2.2"
 
-react-native@0.59.9:
+react-native@^0.59.9:
   version "0.59.9"
   resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.59.9.tgz#c94ee4fa35121720c05235a2dd6cdd2784bf5177"
   dependencies:

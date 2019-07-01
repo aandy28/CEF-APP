@@ -13,7 +13,7 @@ import CategoryList from "./src/components/CategoryList";
 import CategoryProductList from "./src/components/CategoryProductList";
 import DetailsScreen from "./src/components/DetailsScreen";
 import PromoScreen from "./src/components/PromoScreen";
-import CartProvider from "./src/components/cart/CartProvider";
+import Cart from "./src/components/cart/";
 import Logo from "./src/components/Logo";
 
 const homeScreenStack = createStackNavigator(
@@ -148,8 +148,7 @@ const detailScreenStack = createStackNavigator(
 const cartScreenStack = createStackNavigator(
   {
     CartScreen: {
-      screen: CartProvider,
-      path: "cart/:id"
+      screen: Cart
     }
   },
   {
