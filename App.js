@@ -5,6 +5,7 @@ import {
   createDrawerNavigator
 } from "react-navigation";
 import React from "react";
+import AppProvider from "./src/providers/AppProvider";
 import SplashScreen from "./src/components/SplashScreen";
 import HomeScreen from "./src/components/HomeScreen";
 import ProductList from "./src/components/ProductList";
@@ -181,6 +182,16 @@ const InitialNavigator = createSwitchNavigator({
   App: MainNavigator
 });
 
-const App = createAppContainer(InitialNavigator);
+const AppContainer = createAppContainer(InitialNavigator);
+
+class App extends React.Component {
+  render() {
+    return (
+      <AppProvider>
+        <AppContainer />
+      </AppProvider>
+    );
+  }
+}
 
 export default App;

@@ -1,11 +1,14 @@
 // Header.js
 import React from "react";
 import withCart from "./cart/WithCart";
+import { View, Text } from "react-native";
+
+console.log(withCart);
 class CartPreview extends React.Component {
   render() {
     const { cart } = this.props;
     let cartView =
-      cart.length == 0 ? (
+      cart && cart.length == 0 ? (
         <View>
           <Text>Empty cart</Text>
         </View>

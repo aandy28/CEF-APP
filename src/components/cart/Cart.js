@@ -32,7 +32,7 @@ const CartPage = () => (
         <View>
           <Text>Cart</Text>
           {cart.map(item => (
-            <View key={item.id}>
+            <View key={item}>
               <Text>{item.title} </Text>
             </View>
           ))}

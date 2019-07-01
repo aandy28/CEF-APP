@@ -3,6 +3,8 @@ import { createApolloFetch } from "apollo-fetch";
 import { View, ScrollView, Text, Image, TouchableOpacity } from "react-native";
 import ProductItem from "./ProductItem";
 import Loading from "./helpers/loading";
+import { AppConsumer } from "../providers/AppProvider";
+import ProductProvider from "../providers/ProductProvider";
 import Icon from "react-native-vector-icons/Feather";
 import { DrawerActions } from "react-navigation";
 import GLOBALS from "../GlobalVars.js";
@@ -68,43 +70,54 @@ class ProductList extends Component {
   }
 
   render() {
+    const { products, view } = this.state;
     const { navigate } = this.props.navigation;
 
     return (
-      <ScrollView style={styles.greyBg}>
-        <Text
-          style={{
-            padding: 40,
-            fontSize: 30,
-            textAlign: "center",
-            color: "#334b56"
-          }}
-        >
-          Products
-        </Text>
-        {this.state.loading ? (
-          <Loading color={"#d02239"} />
-        ) : (
-          this.state.products.map((prod, index) => {
-            return (
-              <TouchableOpacity
-                key={index}
-                activeOpacity={0.5}
-                onPress={() => {
-                  navigate("DetailsScreen", {
-                    prod: prod
-                  });
+      <AppConsumer>
+        {({ config }) => {
+          const { product, theme } = config;
+
+          return (
+            <ScrollView style={styles.greyBg}>
+              <Text
+                style={{
+                  padding: 40,
+                  fontSize: 30,
+                  textAlign: "center",
+                  color: "#334b56"
                 }}
               >
-                <ProductItem
-                  imageBaseUrl={GLOBALS.IMAGE_BASE_URL}
-                  product={prod}
-                />
-              </TouchableOpacity>
-            );
-          })
-        )}
-      </ScrollView>
+                Products
+              </Text>
+              {this.state.loading ? (
+                <Loading color={"#d02239"} />
+              ) : products ? (
+                <ProductProvider>
+                  {products.map((prod, index) => (
+                    <TouchableOpacity
+                      key={index}
+                      activeOpacity={0.5}
+                      onPress={() => {
+                        navigate("DetailsScreen", {
+                          prod: prod
+                        });
+                      }}
+                    >
+                      <ProductItem
+                        imageBaseUrl={GLOBALS.IMAGE_BASE_URL}
+                        product={prod}
+                      />
+                    </TouchableOpacity>
+                  ))}
+                </ProductProvider>
+              ) : (
+                ""
+              )}
+            </ScrollView>
+          );
+        }}
+      </AppConsumer>
     );
   }
 }
