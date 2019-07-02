@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text, Image, StatusBar, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { DrawerActions, withNavigation } from "react-navigation";
 
 class DrawerHeader extends Component {
@@ -12,27 +12,6 @@ class DrawerHeader extends Component {
     const { navigation, navigateToCallback } = this.props;
     return (
       <View>
-        {/* <TouchableOpacity
-          onPress={() => navigation.dispatch(DrawerActions.closeDrawer())}
-        >
-          <View
-            style={{
-              flexDirection: "row",
-
-              paddingTop: StatusBar.currentHeight + 10,
-              alignItems: "center"
-            }}
-          >
-            <Text
-              style={{
-                paddingLeft: 13,
-                paddingTop: 15
-              }}
-            >
-              Close
-            </Text>
-          </View>
-        </TouchableOpacity> */}
         <TouchableOpacity onPress={() => this.goToRoute("Home")}>
           <View
             style={{

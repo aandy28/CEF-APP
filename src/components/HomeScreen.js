@@ -3,12 +3,10 @@ import { Image, TouchableOpacity, View, Text, ScrollView } from "react-native";
 
 import { DrawerActions } from "react-navigation";
 import Icon from "react-native-vector-icons/Feather";
-import styles from "../styles/GlobalStyles";
 import SearchBar from "./searchbar/";
 import CartPreview from "./CartPreview";
 
 class HomeScreen extends Component {
-  onCartClick = () => {};
   static navigationOptions = ({ navigation, screenProps }) => ({
     drawerLabel: "Home",
     headerRight: <CartPreview navigation={navigation} />,

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text, Image } from "react-native";
+import { View, Image } from "react-native";
 import { createApolloFetch } from "apollo-fetch";
 import GLOBALS from "../GlobalVars.js";
 import Loading from "./helpers/loading";

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, ScrollView, Text, Image, Dimensions } from "react-native";
+import { View, ScrollView, Text, Dimensions } from "react-native";
 import Icon from "react-native-vector-icons/Feather";
 import { DrawerActions, withNavigation } from "react-navigation";
 import ProductImageScrollContainer from "./product/ProductImageScrollContainer";

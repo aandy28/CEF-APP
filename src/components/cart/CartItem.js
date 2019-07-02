@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, ScrollView, Text, Image, Dimensions } from "react-native";
+import { View, Text, Image } from "react-native";
 import GLOBALS from "../../GlobalVars.js";
 
 class CartItem extends Component {
@@ -9,7 +9,7 @@ class CartItem extends Component {
     let imageStepID = item.images[0].stepId;
     const prodImage =
       GLOBALS.IMAGE_BASE_URL + imageStepID + "/" + "medium_" + imageUrl;
-    console.log(item);
+
     return (
       <View
         style={{

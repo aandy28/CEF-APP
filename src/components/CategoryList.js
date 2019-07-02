@@ -84,8 +84,6 @@ class CategoryList extends Component {
   };
 
   render() {
-    const { navigate } = this.props.navigation;
-
     return (
       <ScrollView style={styles.greyBg}>
         <View style={styles.containerHome}>

@@ -48,41 +48,10 @@ class CategoryProductList extends Component {
     )
   });
 
-  componentDidMount() {
-    this.setState({ loading: true });
-    const parentID = this.props.navigation.state.params.id;
-    fetch({
-      query: `{ category(id: "${parentID}") 
-        { name
-          products {
-            description, stockCode, catalogue, id, 
-            images(inHouse: false){
-              stepId
-              content  
-            }
-          } 
-        }
-      }`
-    })
-      .then(res => {
-        this.setState(
-          {
-            products: res.data.category.products,
-            parentName: res.data.category.name
-          },
-          () => {
-            this.setState({ loading: false });
-          }
-        );
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }
-
   render() {
     const { navigate } = this.props.navigation;
-    const { products, loading } = this.state;
+    const { name, id, products } = this.props.navigation.state.params;
+    const { loading } = this.state;
     return (
       <ScrollView style={styles.greyBg}>
         <Text
@@ -93,7 +62,7 @@ class CategoryProductList extends Component {
             color: "#334b56"
           }}
         >
-          Products for {this.state.parentName}
+          Products for {name}
         </Text>
 
         <View>

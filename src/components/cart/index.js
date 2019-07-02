@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, ScrollView, Text, Image, Dimensions } from "react-native";
+import { View, ScrollView, Text } from "react-native";
 import { DrawerActions } from "react-navigation";
 import CartPreview from "../CartPreview";
 import CartItem from "./CartItem";
@@ -31,29 +31,6 @@ class Cart extends Component {
       />
     )
   });
-
-  // componentDidMount = async () => {
-  //   try {
-  //     this.setState({
-  //       products: await this.getItems()
-  //     });
-  //   } catch (e) {
-  //     console.log("error");
-  //   }
-  // };
-
-  // getItems = async () => {
-  //   try {
-  //     const value = await AsyncStorage.getItem("@cart");
-  //     if (value !== null) {
-  //       // value previously stored
-  //       console.log(value);
-  //     }
-  //   } catch (e) {
-  //     // error reading value
-  //     console.log(e);
-  //   }
-  // };
 
   render() {
     return (

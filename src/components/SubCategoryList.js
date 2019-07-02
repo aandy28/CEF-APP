@@ -1,14 +1,11 @@
 import React, { Component } from "react";
 import { createApolloFetch } from "apollo-fetch";
-import { View, ScrollView, Text, Image, TouchableOpacity } from "react-native";
-import ProductItem from "./ProductItem";
+import { View, ScrollView, Text, TouchableOpacity } from "react-native";
 import Icon from "react-native-vector-icons/Feather";
-
-import { DrawerActions, withNavigationFocus } from "react-navigation";
+import { DrawerActions } from "react-navigation";
 import styles from "../styles/GlobalStyles";
 import GLOBALS from "../GlobalVars.js";
 
-const website_step_id = GLOBALS.WEBSITE_STEP_ID;
 const fetch = createApolloFetch({
   uri: GLOBALS.BASE_GRAPHQL_URL
 });
@@ -23,10 +20,29 @@ class SubCategoryList extends Component {
   }
 
   onCatClick = cat => {
-    this.props.navigation.navigate("CategoryProductList", {
-      name: cat.name,
-      id: cat.id
-    });
+    fetch({
+      query: `{ category(id: "${cat.id}") 
+        { name
+          products {
+            description, stockCode, catalogue, id, 
+            images(inHouse: false){
+              stepId
+              content  
+            }
+          } 
+        }
+      }`
+    })
+      .then(res => {
+        this.props.navigation.navigate("CategoryProductList", {
+          name: cat.name,
+          id: cat.id,
+          products: res.data.category.products
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
 
   static navigationOptions = ({ navigation, screenProps }) => ({
@@ -54,7 +70,6 @@ class SubCategoryList extends Component {
   });
 
   render() {
-    const { navigate } = this.props.navigation;
     const { children } = this.props.navigation.state.params.cat;
 
     return (

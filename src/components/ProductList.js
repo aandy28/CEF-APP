@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { createApolloFetch } from "apollo-fetch";
-import { View, ScrollView, Text, Image, TouchableOpacity } from "react-native";
+import { ScrollView, Text, TouchableOpacity } from "react-native";
 import { AppConsumer } from "../providers/AppProvider";
 import ProductItem from "./ProductItem";
 import Loading from "./helpers/loading";
@@ -23,8 +23,6 @@ class ProductList extends Component {
       products: []
     };
   }
-
-  onCartClick = () => {};
   static navigationOptions = ({ navigation, screenProps }) => ({
     drawerLabel: "Home",
     headerRight: <CartPreview navigation={navigation} />,
@@ -40,8 +38,6 @@ class ProductList extends Component {
       />
     )
   });
-
-  prodClick = prodID => {};
 
   componentDidMount() {
     this.setState({ loading: true });

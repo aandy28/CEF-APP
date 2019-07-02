@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { createApolloFetch } from "apollo-fetch";
 import { View, Text, TouchableOpacity } from "react-native";
-import { NavigationActions, DrawerActions } from "react-navigation";
 import styles from "../styles/GlobalStyles";
 import GLOBALS from "../GlobalVars.js";
 

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, ScrollView, Text, Image, Button } from "react-native";
+import { View, Text, Button } from "react-native";
 import Icon from "react-native-vector-icons/Feather";
 import { DrawerActions } from "react-navigation";
 

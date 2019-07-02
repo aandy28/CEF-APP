@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, View, TextInput, FlatList, Keyboard } from "react-native";
+import { View, TextInput, Keyboard } from "react-native";
 import Icon from "react-native-vector-icons/Feather";
 import * as Animate from "react-native-animatable";
 

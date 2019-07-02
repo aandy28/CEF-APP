@@ -1,7 +1,7 @@
 // Header.js
 import React from "react";
 import { AppConsumer } from "../providers/AppProvider";
-import { View, Text, UIManager } from "react-native";
+import { View } from "react-native";
 import Icon from "react-native-vector-icons/Feather";
 
 class CartPreview extends React.Component {
