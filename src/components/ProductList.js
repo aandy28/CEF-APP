@@ -27,7 +27,7 @@ class ProductList extends Component {
   onCartClick = () => {};
   static navigationOptions = ({ navigation, screenProps }) => ({
     drawerLabel: "Home",
-    headerRight: <CartPreview navigation={navigation}/>,
+    headerRight: <CartPreview navigation={navigation} />,
     headerLeft: (
       <Icon
         name="menu"
@@ -47,6 +47,7 @@ class ProductList extends Component {
     this.setState({ loading: true });
     fetch({
       query: `{ allProducts(limit: 50) { description, stockCode, catalogue, id, images(inHouse: false){
+        stepId
     	content  
     } }}`,
       variables: { website_step_id }
@@ -67,7 +68,6 @@ class ProductList extends Component {
     return (
       <AppConsumer>
         {({ config }) => {
-          console.log(config);
           return (
             <ScrollView style={styles.greyBg}>
               <Text
