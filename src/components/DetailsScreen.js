@@ -3,9 +3,10 @@ import { View, ScrollView, Text, Image, Dimensions } from "react-native";
 import Icon from "react-native-vector-icons/Feather";
 import { DrawerActions, withNavigation } from "react-navigation";
 import ProductImageScrollContainer from "./product/ProductImageScrollContainer";
-import { AppConsumer } from "../providers/AppProvider";
 import AddToCart from "./product/AddToCart";
+import GLOBALS from "../GlobalVars.js";
 import CartPreview from "./CartPreview";
+
 const { height, width } = Dimensions.get("window");
 class DetailsScreen extends Component {
   onCartClick = () => {};
@@ -44,30 +45,25 @@ class DetailsScreen extends Component {
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
               >
-                <ProductImageScrollContainer
-                  title={"product image 1"}
-                  imageURI={"https://loremflickr.com/500/500/product"}
-                  screenWidth={width}
-                  screenHeight={height}
-                />
-                <ProductImageScrollContainer
-                  title={"product image 2"}
-                  imageURI={"https://loremflickr.com/g/500/500/product"}
-                  screenWidth={width}
-                  screenHeight={height}
-                />
-                <ProductImageScrollContainer
-                  title={"product image 3"}
-                  imageURI={"https://loremflickr.com/500/500/product"}
-                  screenWidth={width}
-                  screenHeight={height}
-                />
-                <ProductImageScrollContainer
-                  title={"product image 4"}
-                  imageURI={"https://loremflickr.com/g/500/500/product"}
-                  screenWidth={width}
-                  screenHeight={height}
-                />
+                {prod.images.map((image, index) => {
+                  let imageUrl = image.content;
+                  let imageStepID = image.stepId;
+                  const curProdImage =
+                    GLOBALS.IMAGE_BASE_URL +
+                    imageStepID +
+                    "/" +
+                    "medium_" +
+                    imageUrl;
+                  return (
+                    <ProductImageScrollContainer
+                      key={index}
+                      title={"product image 1"}
+                      imageURI={curProdImage}
+                      screenWidth={width}
+                      screenHeight={height}
+                    />
+                  );
+                })}
               </ScrollView>
             </View>
           </View>

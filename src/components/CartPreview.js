@@ -26,7 +26,7 @@ class CartPreview extends React.Component {
                 size={30}
                 style={{ paddingRight: 10 }}
                 color="#fff"
-                onPress={({ props }) => this.onCartClick}
+                onPress={() => this.props.navigation.navigate("Cart")}
               />
             </View>
           );

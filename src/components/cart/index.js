@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { View, ScrollView, Text, Image, Dimensions } from "react-native";
 import { DrawerActions } from "react-navigation";
 import CartPreview from "../CartPreview";
+import CartItem from "./CartItem";
+import { AppConsumer } from "../../providers/AppProvider";
 import Icon from "react-native-vector-icons/Feather";
 import styles from "../../styles/GlobalStyles";
 
@@ -16,7 +18,7 @@ class Cart extends Component {
 
   static navigationOptions = ({ navigation, screenProps }) => ({
     drawerLabel: "Cart",
-    headerRight: <CartPreview navigation={navigation}/>,
+    headerRight: <CartPreview navigation={navigation} />,
     headerLeft: (
       <Icon
         name="menu"
@@ -55,22 +57,34 @@ class Cart extends Component {
 
   render() {
     return (
-      <ScrollView style={styles.greyBg}>
-        <Text
-          style={{
-            padding: 40,
-            fontSize: 30,
-            textAlign: "center",
-            color: "#334b56"
-          }}
-        >
-          Cart
-        </Text>
+      <AppConsumer>
+        {({ cart, addItem }) => {
+          return cart && cart.length == 0 ? (
+            <View>
+              <Text>Your Cart Is Empty</Text>
+            </View>
+          ) : (
+            <ScrollView style={styles.greyBg}>
+              <Text
+                style={{
+                  padding: 40,
+                  fontSize: 30,
+                  textAlign: "center",
+                  color: "#334b56"
+                }}
+              >
+                Cart
+              </Text>
 
-        <View>
-          <Text>Cart</Text>
-        </View>
-      </ScrollView>
+              <ScrollView>
+                {cart.map((item, index) => {
+                  return <CartItem key={index} item={item} />;
+                })}
+              </ScrollView>
+            </ScrollView>
+          );
+        }}
+      </AppConsumer>
     );
   }
 }

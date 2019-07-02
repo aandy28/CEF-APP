@@ -7,7 +7,7 @@ class ProductImageScrollContainer extends Component {
       <View
         style={{
           flex: 1,
-          marginHorizontal: 10
+          marginHorizontal: 20
         }}
       >
         <View
@@ -22,7 +22,7 @@ class ProductImageScrollContainer extends Component {
               flex: 1,
               width: null,
               height: null,
-              resizeMode: "contain",
+              resizeMode: "cover",
               borderRadius: 5,
               borderWidth: 1,
               borderColor: "#ddd"
@@ -31,9 +31,6 @@ class ProductImageScrollContainer extends Component {
               uri: this.props.imageURI
             }}
           />
-        </View>
-        <View style={{ flex: 1, paddingLeft: 10, paddingTop: 10 }}>
-          <Text>{this.props.title}</Text>
         </View>
       </View>
     );
