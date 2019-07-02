@@ -1,12 +1,29 @@
 import React, { Component } from "react";
-import { Image, TouchableOpacity, View, Text, ScrollView } from "react-native";
+import {
+  Image,
+  TouchableOpacity,
+  Text,
+  View,
+  StyleSheet,
+  FlatList,
+  ActivityIndicator,
+  Platform,
+  ScrollView
+} from "react-native";
 
 import { DrawerActions } from "react-navigation";
+import { SearchBar } from "react-native-elements";
 import Icon from "react-native-vector-icons/Feather";
-import SearchBar from "./searchbar/";
+// import SearchBar from "./searchbar/";
 import CartPreview from "./cart/CartPreview";
 
 class HomeScreen extends Component {
+  constructor(props) {
+    super(props);
+    //setting default state
+    this.state = { isLoading: true, search: "" };
+    this.arrayholder = [];
+  }
   static navigationOptions = ({ navigation, screenProps }) => ({
     drawerLabel: "Home",
     headerRight: <CartPreview navigation={navigation} />,
@@ -22,11 +39,89 @@ class HomeScreen extends Component {
       />
     )
   });
+  componentDidMount() {
+    return fetch("https://jsonplaceholder.typicode.com/posts")
+      .then(response => response.json())
+      .then(responseJson => {
+        this.setState(
+          {
+            isLoading: false,
+            dataSource: responseJson
+          },
+          function() {
+            this.arrayholder = responseJson;
+          }
+        );
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }
+  handleChangeText = text => {
+    console.log(text);
+  };
+  handleClearText = text => {
+    this.search.clear();
+  };
+  SearchFilterFunction(text) {
+    //passing the inserted text in textinput
+    const newData = this.arrayholder.filter(function(item) {
+      //applying filter for the inserted text in search bar
+      const itemData = item.title ? item.title.toUpperCase() : "".toUpperCase();
+      const textData = text.toUpperCase();
+      return itemData.indexOf(textData) > -1;
+    });
+    this.setState({
+      //setting the filtered newData on datasource
+      //After setting the data it will automatically re-render the view
+      dataSource: newData,
+      search: text
+    });
+  }
+  ListViewItemSeparator = () => {
+    //Item sparator view
+    return (
+      <View
+        style={{
+          height: 0.3,
+          width: "90%",
+          backgroundColor: "#080808"
+        }}
+      />
+    );
+  };
   render() {
     const { navigate } = this.props.navigation;
+    if (this.state.isLoading) {
+      //Loading View while data is loading
+      return (
+        <View style={{ flex: 1, paddingTop: 20 }}>
+          <ActivityIndicator />
+        </View>
+      );
+    }
     return (
       <ScrollView style={{ backgroundColor: "#D12139" }}>
-        <SearchBar />
+        <SearchBar
+          lightTheme
+          onChangeText={text => this.SearchFilterFunction(text)}
+          onClearText={() => this.SearchFilterFunction("")}
+          placeholder="Type Here..."
+          value={this.state.search}
+        />
+        <FlatList
+          data={this.state.dataSource}
+          ItemSeparatorComponent={this.ListViewItemSeparator}
+          //Item Separator View
+          renderItem={({ item }) => (
+            // Single Comes here which will be repeatative for the FlatListItems
+            <Text style={styles.textStyle}>{item.title}</Text>
+          )}
+          enableEmptySections={true}
+          style={{ marginTop: 10, elevation: 4 }}
+          keyExtractor={(item, index) => index.toString()}
+        />
+        {/* <SearchBar /> */}
         <TouchableOpacity
           activeOpacity={0.5}
           style={{
@@ -166,5 +261,17 @@ class HomeScreen extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  viewStyle: {
+    justifyContent: "center",
+    flex: 1,
+    backgroundColor: "white",
+    marginTop: Platform.OS == "ios" ? 30 : 0
+  },
+  textStyle: {
+    padding: 10
+  }
+});
 
 export default HomeScreen;
