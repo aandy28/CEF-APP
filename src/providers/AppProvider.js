@@ -16,21 +16,6 @@ export default class AppProvider extends Component {
     }
   };
 
-  // state = {
-  //   config,
-  //   cart: [],
-  //   addItem: item => {
-  //     this.setState(
-  //       {
-  //         cart: [...this.state.cart, { ...item }]
-  //       },
-  //       () => {
-  //         this.storeData(this.state.cart);
-  //       }
-  //     );
-  //   }
-  // };
-
   storeData = async cart => {
     try {
       await AsyncStorage.setItem("@cart", cart);

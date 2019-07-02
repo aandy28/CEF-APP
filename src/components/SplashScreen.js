@@ -3,6 +3,7 @@ import { View, Image } from "react-native";
 import { createApolloFetch } from "apollo-fetch";
 import GLOBALS from "../GlobalVars.js";
 import Loading from "./helpers/loading";
+import logoPng from "../images/cef_logo.png";
 
 const website_step_id = GLOBALS.WEBSITE_STEP_ID;
 const fetch = createApolloFetch({
@@ -42,7 +43,7 @@ class SplashScreen extends Component {
     return (
       <View style={styles.viewStyles}>
         <View>
-          <Image source={require("../images/cef_logo.png")} />
+          <Image source={logoPng} />
           <Loading color={"#B81D32"} />
         </View>
       </View>

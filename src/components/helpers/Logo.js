@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Image } from "react-native";
-
+import logoPng from "../../images/cef_logo.png";
 const Logo = () => {
   return (
     <View
@@ -13,11 +13,7 @@ const Logo = () => {
         marginBottom: 10
       }}
     >
-      <Image
-        source={require("../../images/cef_logo.png")}
-        resizeMode="contain"
-        style={{ flex: 1 }}
-      />
+      <Image source={logoPng} resizeMode="contain" style={{ flex: 1 }} />
     </View>
   );
 };
