@@ -22,7 +22,13 @@ class SubCategoryList extends Component {
     };
   }
 
-  onCartClick = () => {};
+  onCatClick = cat => {
+    this.props.navigation.navigate("CategoryProductList", {
+      name: cat.name,
+      id: cat.id
+    });
+  };
+
   static navigationOptions = ({ navigation, screenProps }) => ({
     drawerLabel: "Home",
     headerRight: (

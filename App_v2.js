@@ -108,7 +108,7 @@ const categoryProductsScreenStack = createStackNavigator(
   {
     CategoryProductList: {
       screen: CategoryProductList,
-      path: "category/:id"
+      path: "categoryProducts/:id"
     }
   },
   {

@@ -7,7 +7,7 @@ const ProductItem = props => {
   let prodImage = product.images[0].content;
   let prodStepId = product.images[0].stepId;
   const curProdImage = imageBaseUrl + prodStepId + "/" + "medium_" + prodImage;
-
+  console.log(curProdImage);
   return (
     <View
       style={{

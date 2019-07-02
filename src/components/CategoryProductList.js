@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { createApolloFetch } from "apollo-fetch";
 import { View, ScrollView, Text, Image, TouchableOpacity } from "react-native";
 import ProductItem from "./ProductItem";
+import Loading from "./helpers/loading";
 import Icon from "react-native-vector-icons/Feather";
 import { DrawerActions, withNavigationFocus } from "react-navigation";
 import styles from "../styles/GlobalStyles";
@@ -17,7 +18,8 @@ class CategoryProductList extends Component {
     super(props);
     this.state = {
       loading: true,
-      products: []
+      products: [],
+      parentName: ""
     };
   }
 
@@ -46,9 +48,41 @@ class CategoryProductList extends Component {
     )
   });
 
+  componentDidMount() {
+    this.setState({ loading: true });
+    const parentID = this.props.navigation.state.params.id;
+    fetch({
+      query: `{ category(id: "${parentID}") 
+        { name
+          products {
+            description, stockCode, catalogue, id, 
+            images(inHouse: false){
+              stepId
+              content  
+            }
+          } 
+        }
+      }`
+    })
+      .then(res => {
+        this.setState(
+          {
+            products: res.data.category.products,
+            parentName: res.data.category.name
+          },
+          () => {
+            this.setState({ loading: false });
+          }
+        );
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
   render() {
     const { navigate } = this.props.navigation;
-    console.log(this.props.navigation.state);
+    const { products, loading } = this.state;
     return (
       <ScrollView style={styles.greyBg}>
         <Text
@@ -59,11 +93,14 @@ class CategoryProductList extends Component {
             color: "#334b56"
           }}
         >
-          Products for {this.props.navigation.state.params.id}
+          Products for {this.state.parentName}
         </Text>
-        {this.props.navigation.state.params.products.length > 0 ? (
-          <View>
-            {this.props.navigation.state.params.products.map((prod, index) => {
+
+        <View>
+          {loading ? (
+            <Loading color={"#d02239"} />
+          ) : (
+            products.map((prod, index) => {
               return (
                 <TouchableOpacity
                   key={index}
@@ -74,14 +111,15 @@ class CategoryProductList extends Component {
                     });
                   }}
                 >
-                  <ProductItem product={prod} />
+                  <ProductItem
+                    imageBaseUrl={GLOBALS.IMAGE_BASE_URL}
+                    product={prod}
+                  />
                 </TouchableOpacity>
               );
-            })}
-          </View>
-        ) : (
-          <Text>No Products Found.</Text>
-        )}
+            })
+          )}
+        </View>
       </ScrollView>
     );
   }
