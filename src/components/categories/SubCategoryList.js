@@ -3,8 +3,8 @@ import { createApolloFetch } from "apollo-fetch";
 import { View, ScrollView, Text, TouchableOpacity } from "react-native";
 import Icon from "react-native-vector-icons/Feather";
 import { DrawerActions } from "react-navigation";
-import styles from "../styles/GlobalStyles";
-import GLOBALS from "../GlobalVars.js";
+import styles from "../../styles/GlobalStyles";
+import GLOBALS from "../../GlobalVars.js";
 
 const fetch = createApolloFetch({
   uri: GLOBALS.BASE_GRAPHQL_URL

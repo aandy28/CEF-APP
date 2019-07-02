@@ -4,7 +4,7 @@ import { Image, TouchableOpacity, View, Text, ScrollView } from "react-native";
 import { DrawerActions } from "react-navigation";
 import Icon from "react-native-vector-icons/Feather";
 import SearchBar from "./searchbar/";
-import CartPreview from "./CartPreview";
+import CartPreview from "./cart/CartPreview";
 
 class HomeScreen extends Component {
   static navigationOptions = ({ navigation, screenProps }) => ({

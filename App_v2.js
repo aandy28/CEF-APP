@@ -9,15 +9,15 @@ import {
 import AppProvider from "./src/providers/AppProvider";
 import DefaultScreen from "./src/components/HomeScreen";
 import Cart from "./src/components/cart/";
-import CategoryList from "./src/components/CategoryList";
-import SubCategoryList from "./src/components/SubCategoryList";
-import CategoryProductList from "./src/components/CategoryProductList";
-import ProductList from "./src/components/ProductList";
-import DetailsScreen from "./src/components/DetailsScreen";
+import CategoryList from "./src/components/categories/CategoryList";
+import SubCategoryList from "./src/components/categories/SubCategoryList";
+import CategoryProductList from "./src/components/categories/CategoryProductList";
+import ProductList from "./src/components/product/ProductList";
+import DetailsScreen from "./src/components/product/DetailsScreen";
 import SplashScreen from "./src/components/SplashScreen";
 import MainDrawer from "./src/drawers/MainDrawer";
 import screenMapping from "./src/screenMapping";
-import Logo from "./src/components/Logo";
+import Logo from "./src/components/helpers/Logo";
 
 const homeScreenStack = createStackNavigator(
   {

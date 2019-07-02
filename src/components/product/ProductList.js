@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import { createApolloFetch } from "apollo-fetch";
 import { ScrollView, Text, TouchableOpacity } from "react-native";
-import { AppConsumer } from "../providers/AppProvider";
+import { AppConsumer } from "../../providers/AppProvider";
 import ProductItem from "./ProductItem";
-import Loading from "./helpers/loading";
-import CartPreview from "./CartPreview";
+import Loading from "../helpers/loading";
+import CartPreview from "../cart/CartPreview";
 import Icon from "react-native-vector-icons/Feather";
 import { DrawerActions } from "react-navigation";
-import GLOBALS from "../GlobalVars.js";
-import styles from "../styles/GlobalStyles";
+import GLOBALS from "../../GlobalVars.js";
+import styles from "../../styles/GlobalStyles";
 
 const website_step_id = GLOBALS.WEBSITE_STEP_ID;
 const fetch = createApolloFetch({

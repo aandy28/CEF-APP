@@ -14,7 +14,7 @@ const Logo = () => {
       }}
     >
       <Image
-        source={require("../images/cef_logo.png")}
+        source={require("../../images/cef_logo.png")}
         resizeMode="contain"
         style={{ flex: 1 }}
       />

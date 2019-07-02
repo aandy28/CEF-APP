@@ -1,6 +1,6 @@
 // Header.js
 import React from "react";
-import { AppConsumer } from "../providers/AppProvider";
+import { AppConsumer } from "../../providers/AppProvider";
 import { View } from "react-native";
 import Icon from "react-native-vector-icons/Feather";
 

@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { createApolloFetch } from "apollo-fetch";
 import { View, ScrollView, Text, Image, TouchableOpacity } from "react-native";
-import ProductItem from "./ProductItem";
-import Loading from "./helpers/loading";
+import ProductItem from "../product/ProductItem";
+import Loading from "../helpers/loading";
 import Icon from "react-native-vector-icons/Feather";
 import { DrawerActions, withNavigationFocus } from "react-navigation";
-import styles from "../styles/GlobalStyles";
-import GLOBALS from "../GlobalVars.js";
+import styles from "../../styles/GlobalStyles";
+import GLOBALS from "../../GlobalVars.js";
 
 const website_step_id = GLOBALS.WEBSITE_STEP_ID;
 const fetch = createApolloFetch({
@@ -17,13 +17,12 @@ class CategoryProductList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: true,
+      loading: false,
       products: [],
       parentName: ""
     };
   }
 
-  onCartClick = () => {};
   static navigationOptions = ({ navigation, screenProps }) => ({
     drawerLabel: "Home",
     headerRight: (
@@ -52,6 +51,7 @@ class CategoryProductList extends Component {
     const { navigate } = this.props.navigation;
     const { name, id, products } = this.props.navigation.state.params;
     const { loading } = this.state;
+    
     return (
       <ScrollView style={styles.greyBg}>
         <Text
@@ -66,7 +66,7 @@ class CategoryProductList extends Component {
         </Text>
 
         <View>
-          {loading ? (
+          {this.state.loading == true ? (
             <Loading color={"#d02239"} />
           ) : (
             products.map((prod, index) => {

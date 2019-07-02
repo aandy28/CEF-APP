@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { createApolloFetch } from "apollo-fetch";
 import { View, Text, TouchableOpacity } from "react-native";
-import styles from "../styles/GlobalStyles";
-import GLOBALS from "../GlobalVars.js";
+import styles from "../../../styles/GlobalStyles";
+import GLOBALS from "../../../GlobalVars.js";
 
 const website_step_id = GLOBALS.WEBSITE_STEP_ID;
 const fetch = createApolloFetch({

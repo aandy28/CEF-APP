@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import { View, ScrollView, Text, Dimensions } from "react-native";
 import Icon from "react-native-vector-icons/Feather";
 import { DrawerActions, withNavigation } from "react-navigation";
-import ProductImageScrollContainer from "./product/ProductImageScrollContainer";
-import AddToCart from "./product/AddToCart";
-import GLOBALS from "../GlobalVars.js";
-import CartPreview from "./CartPreview";
+import ProductImageScrollContainer from "./ProductImageScrollContainer";
+import AddToCart from "./AddToCart";
+import GLOBALS from "../../GlobalVars.js";
+import CartPreview from "../cart/CartPreview";
 
 const { height, width } = Dimensions.get("window");
 class DetailsScreen extends Component {
