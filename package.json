@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@appbaseio/reactivesearch-native": "^0.12.0",
+    "@react-native-community/async-storage": "^1.5.0",
     "apollo-boost": "^0.4.3",
     "apollo-fetch": "^0.7.0",
     "bundle": "^2.1.0",
