@@ -4,9 +4,9 @@ import GLOBALS from "../../GlobalVars.js";
 
 class CartItem extends Component {
   render() {
-    const { item } = this.props;
-    let imageUrl = item.images[0].content;
-    let imageStepID = item.images[0].stepId;
+    const { line } = this.props;
+    let imageUrl = line.item.images[0].content;
+    let imageStepID = line.item.images[0].stepId;
     const prodImage =
       GLOBALS.IMAGE_BASE_URL + imageStepID + "/" + "medium_" + imageUrl;
 
@@ -66,21 +66,21 @@ class CartItem extends Component {
                 marginLeft: 10
               }}
             >
-              Qty: 1
+              Qty: {line.quantity}
             </Text>
           </View>
-          <Text style={{ marginBottom: 10 }}>{item.description}</Text>
+          <Text style={{ marginBottom: 10 }}>{line.item.description}</Text>
 
           <View style={{ flex: 1, flexDirection: "row" }}>
             <Text
               style={{ color: "#334b56", marginRight: 5, fontWeight: "700" }}
             >
-              SC: {item.stockCode}
+              SC: {line.item.stockCode}
             </Text>
             <Text
               style={{ color: "#334b56", marginRight: 5, fontWeight: "700" }}
             >
-              PC: {item.catalogue}
+              PC: {line.item.catalogue}
             </Text>
           </View>
         </View>

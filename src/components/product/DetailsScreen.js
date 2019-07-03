@@ -142,7 +142,13 @@ class DetailsScreen extends Component {
                 Part Code: {prod.catalogue}
               </Text>
             </View>
-            <View>
+            <View
+              style={{
+                marginVertical: 10,
+                flex: 1,
+                alignItems: "center"
+              }}
+            >
               <AddToCart screenWidth={width} item={prod} />
             </View>
           </View>

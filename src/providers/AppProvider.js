@@ -10,6 +10,7 @@ export default class AppProvider extends Component {
     config,
     cart: [],
     addItem: item => {
+      console.log(item);
       this.setState(
         {
           cart: [...this.state.cart, { ...item }]
@@ -22,8 +23,9 @@ export default class AppProvider extends Component {
   };
 
   storeData = async cart => {
+    const cartAsString = JSON.stringify(cart);
     try {
-      await AsyncStorage.setItem("@cart", cart);
+      await AsyncStorage.setItem("@cart", cartAsString);
     } catch (e) {
       console.log(e);
       // saving error

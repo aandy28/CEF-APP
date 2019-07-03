@@ -1,38 +1,122 @@
 import React, { Component } from "react";
-import { TouchableOpacity, Text } from "react-native";
+import { View, TouchableOpacity, Text, TextInput } from "react-native";
+import Icon from "react-native-vector-icons/Feather";
 import { AppConsumer } from "../../providers/AppProvider";
 
 class AddToCart extends Component {
-  addToCart = () => {
-    console.log("added to cart");
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: "0"
+    };
+  }
+
+  reduceQuantity = () => {
+    console.log("reduce");
+    let value = parseInt(this.state.value);
+
+    if (value > 1) {
+      value = value - 1;
+    } else {
+      value = 0;
+    }
+    value = value.toString();
+    this.setState({ value: value });
+  };
+  increaseQuantity = () => {
+    console.log("increase");
+    let value = parseInt(this.state.value);
+
+    if (value < 100) {
+      value = value + 1;
+    } else {
+      value = 0;
+    }
+
+    value = value.toString();
+    this.setState({ value: value });
   };
   render() {
     return (
       <AppConsumer>
         {({ cart, addItem }) => {
           return (
-            <TouchableOpacity
-              style={{
-                borderWidth: 2,
-                borderColor: "#334b56",
-                backgroundColor: "transparent",
-                color: "#334b56",
-                height: 50,
-                width: this.props.screenWidth - 60,
+            <View>
+              <View style={{ flex: 1, flexDirection: "row", marginBottom: 15 }}>
+                <TouchableOpacity
+                  style={{
+                    color: "#334b56",
+                    height: 50,
+                    width: 50,
+                    alignItems: "center",
+                    justifyContent: "center",
+                    backgroundColor: "#E1E8EE",
+                    borderRadius: 6
+                  }}
+                  onPress={() => {
+                    this.reduceQuantity();
+                  }}
+                >
+                  <Icon name="minus" size={30} color="#000" />
+                </TouchableOpacity>
+                <TextInput
+                  style={{
+                    height: 50,
+                    flex: 1,
+                    textAlign: "center"
+                  }}
+                  onChangeText={value => this.setState({ value })}
+                  value={this.state.value}
+                />
+                <TouchableOpacity
+                  style={{
+                    color: "#334b56",
+                    height: 50,
+                    width: 50,
+                    alignItems: "center",
+                    justifyContent: "center",
+                    backgroundColor: "#E1E8EE",
+                    borderRadius: 6
+                  }}
+                  onPress={() => {
+                    this.increaseQuantity();
+                  }}
+                >
+                  <Icon name="plus" size={30} color="#000" />
+                </TouchableOpacity>
+              </View>
+              <View style={{ flex: 1 }}>
+                <TouchableOpacity
+                  style={{
+                    borderWidth: 2,
+                    borderColor: "#334b56",
+                    backgroundColor: "transparent",
+                    color: "#334b56",
+                    height: 50,
+                    width: this.props.screenWidth - 60,
 
-                alignItems: "center",
-                justifyContent: "center"
-              }}
-              onPress={() => {
-                addItem(this.props.item);
-              }}
-            >
-              <Text
-                style={{ fontWeight: "700", color: "#334b56", fontSize: 18 }}
-              >
-                ADD TO CART
-              </Text>
-            </TouchableOpacity>
+                    alignItems: "center",
+                    justifyContent: "center"
+                  }}
+                  onPress={() => {
+                    addItem({
+                      item: this.props.item,
+                      quantity: this.state.value
+                    });
+                  }}
+                >
+                  <Text
+                    style={{
+                      fontWeight: "700",
+                      color: "#334b56",
+                      fontSize: 18
+                    }}
+                  >
+                    ADD TO CART
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </View>
           );
         }}
       </AppConsumer>
