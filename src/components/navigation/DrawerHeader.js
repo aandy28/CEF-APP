@@ -1,5 +1,11 @@
 import React, { Component } from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Platform,
+  StyleSheet
+} from "react-native";
 import { DrawerActions, withNavigation } from "react-navigation";
 
 class DrawerHeader extends Component {
@@ -11,7 +17,7 @@ class DrawerHeader extends Component {
   render() {
     const { navigation, navigateToCallback } = this.props;
     return (
-      <View>
+      <View style={styles.iosMarginTop}>
         <TouchableOpacity onPress={() => this.goToRoute("Home")}>
           <View
             style={{
@@ -44,5 +50,10 @@ class DrawerHeader extends Component {
     );
   }
 }
+const styles = StyleSheet.create({
+  iosMarginTop: {
+    marginTop: Platform.OS === "ios" ? 40 : 0
+  }
+});
 
 export default withNavigation(DrawerHeader);

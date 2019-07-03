@@ -10,8 +10,8 @@ import { DrawerItems } from "react-navigation";
 import Icon from "react-native-vector-icons/Feather";
 
 import { evaluateOuterDrawerListItems } from "../utils";
-import OuterDrawerItem from "../components/OuterDrawerItem";
-import DrawerHeader from "../components/DrawerHeader";
+import OuterDrawerItem from "../components/navigation/OuterDrawerItem";
+import DrawerHeader from "../components/navigation/DrawerHeader";
 
 const styles = StyleSheet.create({
   customDrawerTouch: {
