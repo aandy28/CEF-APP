@@ -12,7 +12,6 @@ class AddToCart extends Component {
   }
 
   reduceQuantity = () => {
-    console.log("reduce");
     let value = parseInt(this.state.value);
 
     if (value > 1) {
@@ -24,7 +23,6 @@ class AddToCart extends Component {
     this.setState({ value: value });
   };
   increaseQuantity = () => {
-    console.log("increase");
     let value = parseInt(this.state.value);
 
     if (value < 100) {
