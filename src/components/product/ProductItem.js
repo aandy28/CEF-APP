@@ -4,9 +4,12 @@ import { View, Text, Image } from "react-native";
 const ProductItem = props => {
   const { imageBaseUrl, product } = props;
 
-  let prodImage = product.images[0].content;
-  let prodStepId = product.images[0].stepId;
-  const curProdImage = imageBaseUrl + prodStepId + "/" + "medium_" + prodImage;
+  let prodImage = product.images.length > 0 ? product.images[0].content : "";
+  let prodStepId = product.images.length > 0 ? product.images[0].stepId : "";
+  let curProdImage =
+    product.images.length > 0
+      ? imageBaseUrl + prodStepId + "/" + "medium_" + prodImage
+      : "https://loremflickr.com/g/250/250/product";
 
   return (
     <View
@@ -79,7 +82,7 @@ const ProductItem = props => {
         }}
       >
         <Text style={{ color: "#334b56" }}>
-          Stock Code: {product.stock_code}
+          Stock Code: {product.stockCode}
         </Text>
         <Text style={{ color: "#334b56" }}>Part Code: {product.catalogue}</Text>
       </View>

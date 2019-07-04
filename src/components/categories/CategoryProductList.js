@@ -8,11 +8,6 @@ import { DrawerActions, withNavigationFocus } from "react-navigation";
 import styles from "../../styles/GlobalStyles";
 import GLOBALS from "../../GlobalVars.js";
 
-const website_step_id = GLOBALS.WEBSITE_STEP_ID;
-const fetch = createApolloFetch({
-  uri: GLOBALS.BASE_GRAPHQL_URL
-});
-
 class CategoryProductList extends Component {
   constructor(props) {
     super(props);
@@ -51,7 +46,7 @@ class CategoryProductList extends Component {
     const { navigate } = this.props.navigation;
     const { name, id, products } = this.props.navigation.state.params;
     const { loading } = this.state;
-    
+
     return (
       <ScrollView style={styles.greyBg}>
         <Text
@@ -66,7 +61,7 @@ class CategoryProductList extends Component {
         </Text>
 
         <View>
-          {this.state.loading == true ? (
+          {loading == true ? (
             <Loading color={"#d02239"} />
           ) : (
             products.map((prod, index) => {
