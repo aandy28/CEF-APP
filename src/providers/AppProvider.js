@@ -10,7 +10,6 @@ export default class AppProvider extends Component {
     config,
     cart: [],
     addItem: item => {
-      console.log(item);
       this.setState(
         {
           cart: [...this.state.cart, { ...item }]
@@ -19,6 +18,20 @@ export default class AppProvider extends Component {
           this.storeData(this.state.cart);
         }
       );
+    },
+    restorePreviousCart: previousCart => {
+      this.setState({ cart: previousCart }, () => {
+        this.clearData();
+      });
+    }
+  };
+
+  clearData = async () => {
+    try {
+      await AsyncStorage.removeItem("@cart");
+    } catch (e) {
+      console.log(e);
+      // saving error
     }
   };
 

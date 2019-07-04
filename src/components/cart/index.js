@@ -36,10 +36,12 @@ class Cart extends Component {
   componentDidMount() {
     this.getData();
   }
+
   clearPreviousCart() {
     AsyncStorage.removeItem("@cart");
     this.setState({ previousCart: [] });
   }
+
   getData = async () => {
     try {
       const value = await AsyncStorage.getItem("@cart");
@@ -52,7 +54,7 @@ class Cart extends Component {
   render() {
     return (
       <AppConsumer>
-        {({ cart, addItem }) => {
+        {({ cart, restorePreviousCart }) => {
           let cartInfo =
             cart && cart.length == 0 ? (
               <View>
@@ -111,6 +113,32 @@ class Cart extends Component {
                         return <CartItem key={index} line={line} />;
                       })}
                     </View>
+                    <TouchableOpacity
+                      style={{
+                        borderWidth: 2,
+                        borderColor: "#334b56",
+                        backgroundColor: "transparent",
+                        color: "#334b56",
+                        height: 50,
+                        margin: 10,
+                        alignItems: "center",
+                        justifyContent: "center"
+                      }}
+                      onPress={() => {
+                        this.clearPreviousCart();
+                        restorePreviousCart(this.state.previousCart);
+                      }}
+                    >
+                      <Text
+                        style={{
+                          fontWeight: "700",
+                          color: "#334b56",
+                          fontSize: 18
+                        }}
+                      >
+                        RESTORE PREVIOUS CART
+                      </Text>
+                    </TouchableOpacity>
                     <TouchableOpacity
                       style={{
                         borderWidth: 2,
